@@ -55,7 +55,9 @@ public class Contact extends SqsMessageBase {
 public class AppConfig {
   @Bean
   public SqsRepository<Contact> getContactRepository(){
-    return new SqsRepository<Contact>(Contact.class, "contacts", 200);
+    SqsRepository<Contact> repository = new SqsRepository<>(Contact.class, "contacts", 200);
+    repository.ensureExists();
+    return repository;
   }
 }
 
