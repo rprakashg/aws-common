@@ -1,41 +1,34 @@
 package com.tmobile.cloud.aws.common.sqs;
 
-import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.amazonaws.services.sqs.model.*;
-import com.tmobile.cloud.aws.common.AwsUtils;
 import com.tmobile.cloud.aws.common.JsonSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import static java.util.stream.Collectors.toList;
 import java.util.List;
 
+@Repository
 public class SqsRepositoryImpl<T extends SqsMessageBase> implements SqsRepository<T> {
     private static final Logger LOG = LoggerFactory.getLogger(SqsRepositoryImpl.class);
 
     private final String queueName;
     private final Integer visibilityTimeout;
-    private final String accessKey;
-    private final String secretKey;
+
     private final Class<T> clazz;
-    private final AmazonSQSClient amazonSQSClient;
+
+    @Autowired
+    private AmazonSQSClient amazonSQSClient;
 
     private String queueUrl;
 
-    public SqsRepositoryImpl(Class<T> clazz, String queueName, Integer visibilityTimeout){
-        this(clazz, "", "", queueName, visibilityTimeout);
-    }
-
-    public SqsRepositoryImpl(Class<T> clazz, String accesskey, String secretKey, String queueName, Integer visibilityTimeout){
+    public SqsRepositoryImpl(final Class<T> clazz, final String queueName, final Integer visibilityTimeout){
         this.clazz = clazz;
-        this.accessKey = accesskey;
-        this.secretKey = secretKey;
         this.queueName = queueName;
         this.visibilityTimeout = visibilityTimeout;
-
-        AWSCredentialsProvider credentials = AwsUtils.createCredentialsProvider(this.accessKey, this.secretKey);
-        amazonSQSClient = new AmazonSQSClient(credentials);
     }
 
     @Override
@@ -114,14 +107,6 @@ public class SqsRepositoryImpl<T extends SqsMessageBase> implements SqsRepositor
                                             .withReceiptHandle(message.getReceiptHandle());
         amazonSQSClient.deleteMessage(dmr);
         LOG.info("Done deleting");
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        if(amazonSQSClient != null) {
-            amazonSQSClient.shutdown();
-        }
-        super.finalize();
     }
 
     private T deserializeMessage(Message message){

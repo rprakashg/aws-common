@@ -1,8 +1,11 @@
 package com.tmobile.cloud.aws.common.sqs;
 
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface SqsRepository<T extends SqsMessageBase> {
     String getQueueUrl();
     void ensureExists();
