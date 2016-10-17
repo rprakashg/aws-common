@@ -32,7 +32,7 @@ Add @ComponentScan annotation as below to your configuration class so spring wil
 ```
 Add a public method that returns SqSRepository<T> and annotate this method with @Bean annotation, see sample below
 ```java
-public class Contact extends SqsMessageBase {
+public class ContactSqsMesssage extends SqsMessageBase {
   private String name;
   private String email;
   
@@ -54,8 +54,8 @@ public class Contact extends SqsMessageBase {
 @ComponentScan("com.tmobile.cloud.aws.common")
 public class AppConfig {
   @Bean
-  public SqsRepository<Contact> getContactRepository(){
-    SqsRepository<Contact> repository = new SqsRepository<>(Contact.class, "contacts", 200);
+  public SqsRepository<ContactSqsMesssage> getContactsRepository(){
+    SqsRepository<ContactSqsMesssage> repository = new SqsRepositoryImpl<>(ContactSqsMesssage.class, "contacts", 200);
     repository.ensureExists();
     return repository;
   }
@@ -67,6 +67,6 @@ and not have to worry about how to persist the entity to an SQS queue. Generic r
 developers to focus on building the service.
 ```java
 @Autowire
-private SqsRepository<Contact> contactRepository;
+private SqsRepository<ContactSqsMesssage> contactsSqsRepository;
 ```
 S3 repository comming soon
