@@ -11,13 +11,13 @@ switch to aws-common directory and run command below to install in local maven r
 Add snippet below inside the dependencies element within your POM file
 ```xml
 <dependency>
-  <groupId>com.tmobile.cloud.aws.common</groupId>
+  <groupId>com.rprakashg.cloud.aws.common</groupId>
   <artifactId>aws-common</artifactId>
   <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
 
-## Using AWS SQS as repository for Java POJOS in your Spring Boot Application
+## Using AWS SQS as generic repository for persisting Java POJOS in your Spring Boot Application
 Add snippet below to your application.yml file.
 ```yml
 aws:
@@ -26,9 +26,9 @@ aws:
     keyId: "{specify}"
     secret: "{specify}"
 ```
-Add @ComponentScan annotation as below to your configuration class so spring will automatically locate beans in the package "com.tmobile.cloud.aws.common"
+Add @ComponentScan annotation as below to your configuration class so spring will automatically locate beans in the package "com.rprakashg.cloud.aws.common"
 ```java
-@ComponentScan("com.tmobile.cloud.aws.common")
+@ComponentScan("com.rprakashg.cloud.aws.common")
 ```
 Add a public method that returns SqSRepository<T> and annotate this method with @Bean annotation, see sample below
 ```java
@@ -51,7 +51,7 @@ public class ContactSqsMesssage extends SqsMessageBase {
 }
 
 @Configuration
-@ComponentScan("com.tmobile.cloud.aws.common")
+@ComponentScan("com.rprakashg.cloud.aws.common")
 public class AppConfig {
   @Bean
   public SqsRepository<ContactSqsMesssage> getContactsRepository(){
@@ -69,4 +69,4 @@ developers to focus on building the service.
 @Autowire
 private SqsRepository<ContactSqsMesssage> contactsSqsRepository;
 ```
-S3 repository comming soon
+## Using S3 as generic repository for persisting Java POJOs and Files in your Spring Boot application
