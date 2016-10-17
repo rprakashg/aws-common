@@ -91,3 +91,7 @@ At this point you can auto wire this repository to any service that requires abi
 private S3BucketRepository<byte[]> fileRepository;
 ```
 ### Using S3 as generic repository for persisting Java POJO's 
+Steps to do this are pretty much identical as in the files repository scenario, only exception is instead of instantiating FilesS3BucketRepository we need to use EntitiesS3BucketRepository and specify the type the java POJO we need to persist. See below
+```java
+S3BucketRepository<byte[]> contactsRepository = new EntitiesS3BucketRepository<Contact>(Contact.class, "contacts", false);
+```
