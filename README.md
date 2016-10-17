@@ -70,4 +70,24 @@ developers to focus on building the service.
 private SqsRepository<ContactSqsMesssage> contactsSqsRepository;
 ```
 ## Using S3 as generic repository for persisting Java POJOs and Files in your Spring Boot application
-
+### Using S3 as generic repository for persisting files
+Similar to the SQS example above. 
+Add a public method to your Spring Application config class and annotate this method with @Bean annotation as shown below
+```java
+@Configuration
+@ComponentScan("com.rprakashg.cloud.aws.common")
+public class AppConfig {
+  @Bean
+  public S3BucketRepository<byte[]> getContactsRepository(){
+    S3BucketRepository<byte[]> fileRepository = new FilesS3BucketRepository("images", "application/png", false);
+    fileRepository.ensureExists();
+    return fileRepository;
+  }
+}
+```
+At this point you can auto wire this repository to any service that requires ability to persist files into S3 as shown below
+```java
+@Autowire
+private S3BucketRepository<byte[]> fileRepository;
+```
+### Using S3 as generic repository for persisting Java POJO's 
