@@ -3,6 +3,7 @@ package com.tmobile.cloud.aws.common.configurations;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.tmobile.cloud.aws.common.AwsUtils;
 import com.tmobile.cloud.aws.common.properties.AwsCredentialsProperties;
@@ -33,5 +34,16 @@ public class CommonConfig {
         amazonSQSClient.setRegion(region);
 
         return amazonSQSClient;
+    }
+
+    @Bean
+    public AmazonS3Client getS3Client(){
+        final AWSCredentialsProvider credentials = AwsUtils.createCredentialsProvider(awsCredentialsProperties.getKeyId(),
+                awsCredentialsProperties.getSecret());
+        final AmazonS3Client amazonS3Client = new AmazonS3Client(credentials);
+        final Region region = Region.getRegion(Regions.fromName(awsProperties.getRegion()));
+        amazonS3Client.setRegion(region);
+
+        return amazonS3Client;
     }
 }
