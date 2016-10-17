@@ -70,3 +70,4 @@ developers to focus on building the service.
 private SqsRepository<ContactSqsMesssage> contactsSqsRepository;
 ```
 ## Using S3 as generic repository for persisting Java POJOs and Files in your Spring Boot application
+
