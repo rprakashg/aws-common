@@ -1,4 +1,4 @@
-package com.tmobile.cloud.aws.common.properties;
+package com.rprakashg.cloud.aws.common.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

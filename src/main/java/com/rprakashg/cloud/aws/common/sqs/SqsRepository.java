@@ -1,4 +1,4 @@
-package com.tmobile.cloud.aws.common.sqs;
+package com.rprakashg.cloud.aws.common.sqs;
 
 
 import org.springframework.stereotype.Repository;

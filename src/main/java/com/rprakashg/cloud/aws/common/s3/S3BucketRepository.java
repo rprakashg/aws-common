@@ -1,4 +1,4 @@
-package com.tmobile.cloud.aws.common.s3;
+package com.rprakashg.cloud.aws.common.s3;
 
 import com.sun.jndi.toolkit.url.Uri;
 

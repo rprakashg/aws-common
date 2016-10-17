@@ -1,4 +1,4 @@
-package com.tmobile.cloud.aws.common;
+package com.rprakashg.cloud.aws.common;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.InstanceProfileCredentialsProvider;

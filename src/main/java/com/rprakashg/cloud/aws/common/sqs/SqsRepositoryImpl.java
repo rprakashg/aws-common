@@ -1,8 +1,8 @@
-package com.tmobile.cloud.aws.common.sqs;
+package com.rprakashg.cloud.aws.common.sqs;
 
 import com.amazonaws.services.sqs.AmazonSQSClient;
 import com.amazonaws.services.sqs.model.*;
-import com.tmobile.cloud.aws.common.JsonSerializer;
+import com.rprakashg.cloud.aws.common.JsonSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

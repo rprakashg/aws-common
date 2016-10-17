@@ -1,9 +1,9 @@
-package com.tmobile.cloud.aws.common.s3;
+package com.rprakashg.cloud.aws.common.s3;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
-import com.tmobile.cloud.aws.common.JsonSerializer;
+import com.rprakashg.cloud.aws.common.JsonSerializer;
 
 import java.io.*;
 

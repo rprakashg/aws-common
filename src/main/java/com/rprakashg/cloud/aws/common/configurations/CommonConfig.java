@@ -1,13 +1,13 @@
-package com.tmobile.cloud.aws.common.configurations;
+package com.rprakashg.cloud.aws.common.configurations;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.sqs.AmazonSQSClient;
-import com.tmobile.cloud.aws.common.AwsUtils;
-import com.tmobile.cloud.aws.common.properties.AwsCredentialsProperties;
-import com.tmobile.cloud.aws.common.properties.AwsProperties;
+import com.rprakashg.cloud.aws.common.properties.AwsProperties;
+import com.rprakashg.cloud.aws.common.AwsUtils;
+import com.rprakashg.cloud.aws.common.properties.AwsCredentialsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
