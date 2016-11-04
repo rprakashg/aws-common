@@ -68,5 +68,5 @@ buildNumber.properties
 .mvn/timing.properties
 logs/
 .log
-/pom.xml
+
 lib
